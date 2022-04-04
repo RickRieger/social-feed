@@ -1,12 +1,14 @@
 import React from "react";
 import NavBar from "./Components/NavBar/NavBar";
-import Post from "./Components/Post/Post";
+import CreatePost from "./Components/CreatePost/CreatePost";
+import DisplayPosts from "./Components/DisplayPosts/DisplayPosts";
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className="App">
       <NavBar/>
-      <Post/>
+      <CreatePost/>
+      <DisplayPosts/>
     </div>
   );
 }
