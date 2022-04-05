@@ -29,7 +29,7 @@ function Post({ post }) {
       </div>
       <div className='post post-item'>{post.comment}</div>
       <div className='date'>
-        Posted on: {moment(post.date).format('MMM Do YYYY')}
+        Posted on: {moment(post.date).format('MMM Do YYYY, h:mm:ss a')}
       </div>
       <div className='thumbs post-item'>
         <span
