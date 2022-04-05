@@ -1,15 +1,32 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Form, Col, Row, Button } from 'react-bootstrap'
 import "./CreatePost.css"
-function CreatePost() {
+function CreatePost(props) {
+
+    const [name, setName] = useState('');
+    const [comment, setComment] = useState('');
+
+    const handleNameOnChange = (e)=>{
+        setName(e.target.value)
+        
+
+    }
+    const handleCommentOnChange = (e)=>{
+        setComment(e.target.value)
+        
+    }
+
   return (
-    <Form className = "post-form" >
+    <Form className = "post-form" onSubmit={(e)=>{
+        e.preventDefault();
+
+        props.handleNewComment(name,comment)}}>
     <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
       <Form.Label column sm={2}>
         Name
       </Form.Label>
       <Col sm={8}>
-        <Form.Control type="name" placeholder="Name" />
+        <Form.Control type="name" placeholder="Name" onChange={(e)=> handleNameOnChange(e)} />
       </Col>
     </Form.Group>
   
@@ -18,7 +35,7 @@ function CreatePost() {
         Post
       </Form.Label>
       <Col sm={8}>
-        <Form.Control as="textarea" type="Post" placeholder="Post" />
+        <Form.Control as="textarea" type="Post" placeholder="Post" onChange={(e)=>handleCommentOnChange(e)}/>
       </Col>
     </Form.Group>
     <Form.Group as={Row} className="mb-3">
