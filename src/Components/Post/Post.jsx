@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import moment from 'moment';
 
-function Post({ post }) {
+function Post({ post, key, handleUpdateLikeAndDislike }) {
   const [thumbsUp, setThumbsUp] = useState(false);
   const [thumbsDown, setThumbsDown] = useState(false);
 
@@ -17,6 +17,7 @@ function Post({ post }) {
         setThumbsUp(false);
       }
     }
+    console.log('key===', key, 'func', handleUpdateLikeAndDislike);
   };
 
   return (
