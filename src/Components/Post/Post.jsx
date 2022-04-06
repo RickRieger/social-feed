@@ -1,23 +1,31 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import moment from 'moment';
 
-function Post({ post, key, handleUpdateLikeAndDislike }) {
-  const [thumbsUp, setThumbsUp] = useState(false);
-  const [thumbsDown, setThumbsDown] = useState(false);
+function Post({ post, index, handleUpdateLikeAndDislike }) {
+  const [like, setLike] = useState(post.like);
+  const [dislike, setDislike] = useState(post.disLike);
 
-  const handleThumbsOnClick = (thumbs) => {
-    if (thumbs === 'thumbs-up') {
-      setThumbsUp(!thumbsUp);
-      if (thumbsDown === true) {
-        setThumbsDown(false);
+  useEffect(() => {
+    post['like'] = like;
+    handleUpdateLikeAndDislike(post, index);
+  }, [like, post]);
+  useEffect(() => {
+    post['disLike'] = dislike;
+    handleUpdateLikeAndDislike(post, index);
+  }, [dislike, post]);
+
+  const handleThumbsOnClick = (likeOrDislike, post) => {
+    if (likeOrDislike === 'like') {
+      setLike(!like);
+      if (dislike === true) {
+        setDislike(false);
       }
     } else {
-      setThumbsDown(!thumbsDown);
-      if (thumbsUp === true) {
-        setThumbsUp(false);
+      setDislike(!dislike);
+      if (like === true) {
+        setLike(false);
       }
     }
-    console.log('key===', key, 'func', handleUpdateLikeAndDislike);
   };
 
   return (
@@ -35,13 +43,13 @@ function Post({ post, key, handleUpdateLikeAndDislike }) {
       <div className='thumbs post-item'>
         <span
           className='glyphicon glyphicon-thumbs-up'
-          onClick={() => handleThumbsOnClick('thumbs-up')}
-          style={{ color: thumbsUp ? '#32CD32' : 'grey' }}
+          onClick={() => handleThumbsOnClick('like', post)}
+          style={{ color: like ? '#32CD32' : 'grey' }}
         ></span>
         <span
           className='glyphicon glyphicon-thumbs-down'
-          onClick={() => handleThumbsOnClick('thumbs-down')}
-          style={{ color: thumbsDown ? 'red' : 'grey' }}
+          onClick={() => handleThumbsOnClick('dislike', post)}
+          style={{ color: dislike ? 'red' : 'grey' }}
         ></span>
       </div>
       <hr />

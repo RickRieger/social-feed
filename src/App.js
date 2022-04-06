@@ -45,8 +45,10 @@ function App() {
     setPayload([newComment, ...payload]);
   };
 
-  const handleUpdateLikeAndDislike = (x) => {
-    console.log(x);
+  const handleUpdateLikeAndDislike = (post, index) => {
+    payload[index] = post;
+    console.log(payload);
+    localStorage.setItem('payload', JSON.stringify(payload));
   };
 
   return (
