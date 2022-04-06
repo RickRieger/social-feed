@@ -12,6 +12,14 @@
 
 #button{
     border-radius: 2rem;
-    width:6rem;
+    width:8rem;
     border: .5px solid grey;
 }
+#button-clear-all{
+    border-radius: 2rem;
+    width:8rem;
+    border: .5px solid grey;
+    background-color: darkorange;
+    margin-top: 5px;
+}
+

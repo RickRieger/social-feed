@@ -11,6 +11,10 @@ function CreatePost(props) {
   const handleCommentOnChange = (e) => {
     setComment(e.target.value);
   };
+  const handleClearAll = () => {
+    localStorage.clear('payload');
+    window.location.reload();
+  };
 
   return (
     <Form
@@ -50,7 +54,12 @@ function CreatePost(props) {
       <Form.Group as={Row} className='mb-3'>
         <Col sm={{ span: 2, offset: 8 }}>
           <Button id='button' type='submit'>
-            Create
+            Create-post
+          </Button>
+        </Col>
+        <Col sm={{ span: 2, offset: 8 }}>
+          <Button id='button-clear-all' onClick={handleClearAll}>
+            Clear-all
           </Button>
         </Col>
       </Form.Group>
